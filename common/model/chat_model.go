@@ -9,6 +9,7 @@ import (
 	"github.com/cloudwego/eino-ext/components/model/qwen"
 	"github.com/cloudwego/eino/components/model"
 	"github.com/shaxiaozz/my-eino-examples/config"
+	"github.com/shaxiaozz/my-eino-examples/global"
 	"net/http"
 	"net/url"
 	"os"
@@ -21,14 +22,16 @@ func NewChatModel(ctx context.Context) (model.ToolCallingChatModel, error) {
 		os.Exit(1)
 	}
 	_, _ = fmt.Fprintln(os.Stdout,
-		fmt.Sprintf("===== Model Info =====\ntype: %s\nmodel: %s\nbase_url: %s\nthinking: %t\nproxy: %t\n",
+		fmt.Sprintf("===== Model Info =====\ntype: %s\nmodel: %s\nbase_url: %s\nthinking: %t\nproxy: %t\nsession_dir: %s\n",
 			cfg.Model.Type,
 			cfg.Model.Name,
 			cfg.Model.BaseUrl,
 			cfg.Model.EnableThinking,
 			cfg.Proxy.Enable,
+			cfg.Model.SessionDir,
 		),
 	)
+	global.Config = cfg
 
 	// proxy
 	proxyUrl, _ := url.Parse(cfg.Proxy.Host)

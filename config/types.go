@@ -6,11 +6,12 @@ type App struct {
 }
 
 type Model struct {
-	Name           string // 模型名称
-	Type           string // 模型类型(openai/ark/deepseek/qwen)
+	Name           string
+	Type           string
 	BaseUrl        string
 	ApiKey         string
 	EnableThinking bool
+	SessionDir     string
 }
 
 type Proxy struct {

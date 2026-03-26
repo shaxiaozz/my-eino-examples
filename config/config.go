@@ -28,6 +28,7 @@ func InitConfig() *App {
 			BaseUrl:        getEnv("MODEL_BASE_URL", ""),
 			ApiKey:         getEnv("MODEL_API_KEY", ""),
 			EnableThinking: getEnv("MODEL_ENABLE_THINKING", "false") == "true",
+			SessionDir:     getEnv("MODEL_SESSION_DIR", ""),
 		},
 		Proxy: Proxy{
 			Enable:   getEnv("PROXY_ENABLE", "false") == "true",
