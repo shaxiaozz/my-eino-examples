@@ -1,5 +1,5 @@
 /*
- * https://www.cloudwego.io/zh/docs/eino/quick_start/chapter_01_chatmodel_and_message/
+ * https://github.com/cloudwego/eino-examples/blob/main/quickstart/chatwitheino/cmd/ch01/main.go
  */
 
 package main

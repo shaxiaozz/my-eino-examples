@@ -1,3 +1,7 @@
+/*
+ * https://github.com/cloudwego/eino-examples/blob/main/quickstart/chatwitheino/cmd/ch03/main.go
+ */
+
 package main
 
 import (
