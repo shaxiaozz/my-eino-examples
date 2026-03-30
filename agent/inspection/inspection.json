@@ -1,0 +1,24 @@
+{
+  "name": "道客集群服务器巡检",
+  "description": "对服务器核心指标进行巡检，生成巡检报告(k8s_cluster标签是指道客集群)",
+  "items": [
+    {
+      "category": "CPU",
+      "name": "CPU使用率",
+      "promql": "100 * (1 - avg  by (instance,k8s_cluster) (rate(node_cpu_seconds_total{mode="idle",k8s_cluster=~".*prd.*",job="node-exporter",app_kubernetes_io_name!~"vm-elk-node|skywalking-proxy-ali-node"}[3m])))",
+      "description": "当前CPU使用率"
+    },
+    {
+      "category": "CPU",
+      "name": "负载饱和度",
+      "promql": "sum(node_load1{k8s_cluster=~".*prd.*",job="node-exporter",app_kubernetes_io_name!~"vm-elk-node|skywalking-proxy-ali-node"}) by (instance,k8s_cluster) / count by (instance,k8s_cluster) (node_cpu_seconds_total)",
+      "description": "计算1分钟负载除以CPU核心数，结果>1表示过载"
+    },
+    {
+      "category": "内存",
+      "name": "内存使用率",
+      "promql": "sum((node_memory_MemTotal_bytes{k8s_cluster=~".*prd.*",job="node-exporter",app_kubernetes_io_name!~"vm-elk-node|skywalking-proxy-ali-node"}-node_memory_Buffers_bytes-node_memory_Cached_bytes-node_memory_MemFree_bytes)/node_memory_MemTotal_bytes) by (instance,k8s_cluster) *100 ",
+      "description": "当前CPU使用率"
+    }
+  ]
+}
